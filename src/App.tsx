@@ -34,6 +34,7 @@ interface ComplementaryMaterial {
   code: string;
   bgImage?: string;
   pdfUrl?: string;
+  checkoutUrl?: string;
 }
 
 type Page = 'login' | 'studies' | 'subject_detail' | 'complementary_detail';
@@ -144,11 +145,11 @@ const SUBJECTS: Subject[] = [
 ];
 
 const COMPLEMENTARY: ComplementaryMaterial[] = [
-  { id: 'simulados', name: 'Simulados Esquematizados', code: 'SIESQ', bgImage: 'https://i.ibb.co/sJdgnwy0/Design-sem-nome-14.png', pdfUrl: 'https://drive.google.com/file/d/1Cp4QE0uGU9XnklwyQf7UbfQQnXXZzxmL/view?usp=drive_link' },
-  { id: 'revisao', name: 'Revisão Esquematizada', code: 'REVESQ', bgImage: 'https://i.ibb.co/wryfhd17/Design-sem-nome-11.png', pdfUrl: 'https://drive.google.com/file/d/1uLekOLWNYDsgvU-axbbXUU6UAnGyaF2s/view?usp=drive_link' },
-  { id: 'redacao', name: 'Redação Discursiva para Concursos', code: 'REDCON', bgImage: 'https://i.ibb.co/sdQLnnS3/Design-sem-nome-16.png', pdfUrl: 'https://drive.google.com/file/d/1NXhBdWnb7jkfDOxta4XUkIwaagxKxTtl/view?usp=drive_link' },
-  { id: 'ferro', name: 'Disciplina de Ferro - Controle Emocional', code: 'DIFECOE', bgImage: 'https://i.ibb.co/Z1TQdjkN/Design-sem-nome-12.png', pdfUrl: 'https://drive.google.com/file/d/1BIQVlJMNV58C-9EbxdA9prE0PpygEZlo/view?usp=drive_link' },
-  { id: 'estudar_pdf', name: 'Como Estudar com PDFs', code: 'COESPS', bgImage: 'https://i.ibb.co/PsqSMM2m/Design-sem-nome-15.png', pdfUrl: 'https://drive.google.com/file/d/1gJ0d-5JIdXitUp0IDZo_IbOLBL8V9_Lw/view?usp=drive_link' },
+  { id: 'simulados', name: 'Simulados Esquematizados', code: 'SIESQ', bgImage: 'https://i.ibb.co/sJdgnwy0/Design-sem-nome-14.png', pdfUrl: 'https://drive.google.com/file/d/1Cp4QE0uGU9XnklwyQf7UbfQQnXXZzxmL/view?usp=drive_link', checkoutUrl: 'https://pay.wiapy.com/Wd0jfGvJot' },
+  { id: 'revisao', name: 'Revisão Esquematizada', code: 'REVESQ', bgImage: 'https://i.ibb.co/wryfhd17/Design-sem-nome-11.png', pdfUrl: 'https://drive.google.com/file/d/1uLekOLWNYDsgvU-axbbXUU6UAnGyaF2s/view?usp=drive_link', checkoutUrl: 'https://pay.wiapy.com/Tyn1d8pFs-' },
+  { id: 'redacao', name: 'Redação Discursiva para Concursos', code: 'REDCON', bgImage: 'https://i.ibb.co/sdQLnnS3/Design-sem-nome-16.png', pdfUrl: 'https://drive.google.com/file/d/1NXhBdWnb7jkfDOxta4XUkIwaagxKxTtl/view?usp=drive_link', checkoutUrl: 'https://pay.wiapy.com/lRFSmwYQYg' },
+  { id: 'ferro', name: 'Disciplina de Ferro - Controle Emocional', code: 'DIFECOE', bgImage: 'https://i.ibb.co/Z1TQdjkN/Design-sem-nome-12.png', pdfUrl: 'https://drive.google.com/file/d/1BIQVlJMNV58C-9EbxdA9prE0PpygEZlo/view?usp=drive_link', checkoutUrl: 'https://pay.wiapy.com/Hn-9DRvIDW' },
+  { id: 'estudar_pdf', name: 'Como Estudar com PDFs', code: 'COESPS', bgImage: 'https://i.ibb.co/PsqSMM2m/Design-sem-nome-15.png', pdfUrl: 'https://drive.google.com/file/d/1gJ0d-5JIdXitUp0IDZo_IbOLBL8V9_Lw/view?usp=drive_link', checkoutUrl: 'https://pay.wiapy.com/7cALG9VMpK' },
 ];
 
 // --- Components ---
@@ -365,9 +366,9 @@ const ComplementaryCard = ({ material, isUnlocked, onUnlock, onClick }: Compleme
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
         </div>
       )}
-      <button 
+      <div 
         onClick={() => isUnlocked ? onClick(material) : setIsOpen(!isOpen)}
-        className="w-full p-8 flex flex-col items-center text-center gap-5 relative z-10"
+        className="w-full p-8 flex flex-col items-center text-center gap-5 relative z-10 cursor-pointer"
       >
         <div className={`w-20 h-20 rounded-2xl flex items-center justify-center transition-all duration-500 shadow-inner border ${isUnlocked ? 'bg-green-600/20 text-green-400 border-green-500/20 group-hover:bg-green-600 group-hover:text-white' : 'bg-amber-600/20 text-amber-400 border-amber-500/20 group-hover:bg-amber-600 group-hover:text-white group-hover:scale-110'}`}>
           {isUnlocked ? <Unlock className="w-10 h-10" /> : <Lock className="w-10 h-10" />}
@@ -388,7 +389,7 @@ const ComplementaryCard = ({ material, isUnlocked, onUnlock, onClick }: Compleme
             <ChevronDown className={`w-5 h-5 ${isOpen ? 'text-amber-400' : 'text-slate-600'}`} />
           )}
         </div>
-      </button>
+      </div>
       
       <AnimatePresence>
         {isOpen && !isUnlocked && (
@@ -396,10 +397,10 @@ const ComplementaryCard = ({ material, isUnlocked, onUnlock, onClick }: Compleme
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            className="overflow-hidden"
+            className="overflow-hidden relative z-20"
           >
             <div className="px-8 pb-10 pt-4 border-t border-white/5 bg-white/5">
-              <div className="py-2">
+              <div className="py-2" onClick={(e) => e.stopPropagation()}>
                 <p className="text-[10px] text-slate-400 mb-5 font-black uppercase tracking-widest text-center">Insira o código de acesso premium:</p>
                 <div className="flex flex-col gap-4">
                   <input 
@@ -415,6 +416,16 @@ const ComplementaryCard = ({ material, isUnlocked, onUnlock, onClick }: Compleme
                   >
                     Desbloquear Agora
                   </button>
+                  {material.checkoutUrl && (
+                    <a 
+                      href={material.checkoutUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full py-4 rounded-2xl bg-slate-800 text-white font-black uppercase tracking-widest text-center hover:bg-slate-700 transition-all border border-white/5"
+                    >
+                      Adquirir Agora
+                    </a>
+                  )}
                   {error && (
                     <motion.p 
                       initial={{ opacity: 0, y: -10 }}

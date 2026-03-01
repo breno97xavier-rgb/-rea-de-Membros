@@ -41,6 +41,7 @@ type Page = 'login' | 'studies' | 'subject_detail' | 'complementary_detail';
 
 // --- Constants ---
 const LOGO_URL = "https://i.ibb.co/mFbSYv6j/1000112350.webp";
+const EDITOR_URL = "https://editoraeditalconcursos.vercel.app";
 
 const SUBJECTS: Subject[] = [
   { 
@@ -157,12 +158,17 @@ const COMPLEMENTARY: ComplementaryMaterial[] = [
 const Header = ({ onLogout, showLogout = false }: { onLogout?: () => void, showLogout?: boolean }) => (
   <header className="fixed top-0 left-0 right-0 bg-slate-950/80 backdrop-blur-md border-b border-white/10 z-50 h-16">
     <div className="max-w-7xl mx-auto px-4 h-full flex items-center justify-between">
-      <div className="flex items-center gap-3">
+      <a 
+        href={EDITOR_URL} 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        className="flex items-center gap-3 hover:opacity-80 transition-opacity"
+      >
         <div className="bg-white p-1 rounded-lg">
           <img src={LOGO_URL} alt="Edital Concursos" className="h-8 w-auto object-contain" />
         </div>
         <span className="font-black text-white text-lg hidden sm:inline tracking-tighter uppercase font-display">Edital Concursos</span>
-      </div>
+      </a>
       {showLogout && (
         <button 
           onClick={onLogout}
@@ -179,7 +185,14 @@ const Header = ({ onLogout, showLogout = false }: { onLogout?: () => void, showL
 const Footer = () => (
   <footer className="bg-slate-950/50 border-t border-white/5 py-16 mt-20">
     <div className="max-w-7xl mx-auto px-4 text-center">
-      <h3 className="font-black text-white text-2xl mb-2 tracking-tighter uppercase font-display">Edital Concursos</h3>
+      <a 
+        href={EDITOR_URL} 
+        target="_blank" 
+        rel="noopener noreferrer"
+        className="inline-block hover:opacity-80 transition-opacity mb-2"
+      >
+        <h3 className="font-black text-white text-2xl tracking-tighter uppercase font-display">Edital Concursos</h3>
+      </a>
       <p className="text-slate-500 text-xs mb-10 uppercase tracking-[0.2em]">© 2026 – Todos os direitos reservados</p>
       
       <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
@@ -583,9 +596,14 @@ export default function App() {
           >
             <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-600 via-yellow-400 to-blue-600"></div>
             <div className="mb-10 flex justify-center">
-              <div className="bg-white p-4 rounded-3xl shadow-2xl shadow-white/10">
+              <a 
+                href={EDITOR_URL} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="bg-white p-4 rounded-3xl shadow-2xl shadow-white/10 hover:scale-105 transition-transform"
+              >
                 <img src={LOGO_URL} alt="Logo" className="h-20 w-auto" />
-              </div>
+              </a>
             </div>
             <h1 className="text-3xl sm:text-4xl font-black text-white mb-3 tracking-tighter font-display uppercase leading-tight">Área de Membros<br/><span className="text-gradient-gold">PRF 2026</span></h1>
             <p className="text-slate-500 mb-10 font-bold uppercase tracking-widest text-xs">Identifique-se para acessar seu portal</p>

@@ -63,7 +63,7 @@ const SUBJECTS: Subject[] = [
     pdfUrls: {
       teoria: 'https://drive.google.com/file/d/1i2N2LWC98ZWoJarRanzsbWn-oQPInxIv/view?usp=drive_link',
       mapas: 'https://drive.google.com/file/d/1Thb9ug4Wyyn4NXKPR7yx7SbAJTZca9zE/view?usp=drive_link',
-      questoes: 'https://drive.google.com/file/d/11uj36TRH4EZvEczYg3XDq8u_lY89i4Ll/view?usp=drive_link'
+      questoes: 'https://drive.google.com/file/d/1BxKab9uOz1-r4-5F4M-T68HHaH9xYpD7/view?usp=drive_link'
     }
   },
   { 
